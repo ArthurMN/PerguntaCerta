@@ -53,6 +53,15 @@ import {
     CircleDot,
     Dot,
     MapPinPlus,
+    Library,
+    Trophy,
+    Divide,
+    Percent,
+    Globe,
+    Earth,
+    ScrollText,
+    ALargeSmall,
+    Cuboid,
 } from "lucide-react-native";
 import { ViewStyle } from "react-native";
 import classNames from "./classNames";
@@ -171,6 +180,13 @@ const icons = {
     'circle-dot': CircleDot,
     'dot': Dot,
     'map-pin-plus': MapPinPlus,
+    'library': Library,
+    'trophy': Trophy,
+    'percent': Percent,
+    'earth': Earth,
+    'scroll-text': ScrollText,
+    'a-large-small': ALargeSmall,
+    'cuboid': Cuboid,
   };
 
 

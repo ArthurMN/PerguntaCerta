@@ -1,25 +1,53 @@
-import React from 'react';
-import MainBottomTabs from '../MainBottomTabs';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import React from 'react';
+import { stackRoute } from '../../types/stackRoute.d';
+import EmObras from '../../screens/EmObras';
 import { slate, white } from 'tailwindcss/colors';
 import { getTamanhoFontBase } from '../../components/Texto';
-import { stackRoute } from '../../types/stackRoute.d';
-
-
+import Disciplinas from '../../screens/Disciplinas';
+import SelecaoAssunto from '../../screens/SelecaoAssunto';
+import SelecaoNivel from '../../screens/SelecaoNivel';
+import Perguntas from '../../screens/Perguntas';
 
 const Stack = createNativeStackNavigator();
 
-
 const StackRoutes: Array<stackRoute> = [
     {
-        name: 'main-bottom-tabs',
-        component: MainBottomTabs
+        name: 'disciplinas',
+        component: Disciplinas,
+    },
+    {
+        name: 'selecao-assunto',
+        component: SelecaoAssunto,
+        showHeader: true,
+        showBackButton: true,
+    },
+    {
+        name: 'selecao-nivel',
+        component: SelecaoNivel,
+        showHeader: true,
+        showBackButton: true,
+    },
+    {
+        name: 'perguntas',
+        component: Perguntas,
+    },
+    {
+        name: 'em-obras',
+        component: EmObras,
+        showHeader: true,
+        showBackButton: true,
     },
 ]
 
-const MainStack = () => {
+const DisciplinasStack = () => {
     return (
-        <Stack.Navigator>
+        <Stack.Navigator
+            initialRouteName='disciplinas'
+            screenOptions={{
+                headerShadowVisible: false,
+            }}
+        >
             {StackRoutes.map(route => (
                 <Stack.Screen
                     key={route.name}
@@ -29,7 +57,7 @@ const MainStack = () => {
                         statusBarStyle: route?.statusBarStyle,
                         headerBackVisible: !!route.showBackButton,
                         headerShown: !!route.showHeader,
-                        headerTitle: route.title,
+                        headerTitle: route.title || '',
                         statusBarHidden: !!route?.statusBarHidden,
                         headerStyle: { backgroundColor: slate[700] },
                         headerTitleAlign: 'left',
@@ -44,6 +72,4 @@ const MainStack = () => {
     )
 }
 
-export default MainStack
-
-
+export default DisciplinasStack;
