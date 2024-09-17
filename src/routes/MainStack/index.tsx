@@ -24,7 +24,7 @@ const MainStack = () => {
                 <Stack.Screen
                     key={route.name}
                     options={{
-                        statusBarColor: route.statusBarColor ? route.statusBarColor : slate[900],
+                        statusBarColor: route.statusBarColor ? route.statusBarColor : slate[800],
                         statusBarTranslucent: !!route.statusBarTranslucent,
                         statusBarStyle: route?.statusBarStyle,
                         headerBackVisible: !!route.showBackButton,

@@ -21,16 +21,19 @@ const StackRoutes: Array<stackRoute> = [
         component: SelecaoAssunto,
         showHeader: true,
         showBackButton: true,
+        statusBarColor: slate[700]
     },
     {
         name: 'selecao-nivel',
         component: SelecaoNivel,
         showHeader: true,
         showBackButton: true,
+        statusBarColor: slate[700]
     },
     {
         name: 'perguntas',
         component: Perguntas,
+        statusBarColor: slate[700]
     },
     {
         name: 'em-obras',
@@ -52,7 +55,7 @@ const DisciplinasStack = () => {
                 <Stack.Screen
                     key={route.name}
                     options={{
-                        statusBarColor: route.statusBarColor ? route.statusBarColor : slate[900],
+                        statusBarColor: route.statusBarColor ? route.statusBarColor : slate[800],
                         statusBarTranslucent: !!route.statusBarTranslucent,
                         statusBarStyle: route?.statusBarStyle,
                         headerBackVisible: !!route.showBackButton,

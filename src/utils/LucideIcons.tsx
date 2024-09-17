@@ -62,6 +62,7 @@ import {
     ScrollText,
     ALargeSmall,
     Cuboid,
+    SquarePi,
 } from "lucide-react-native";
 import { ViewStyle } from "react-native";
 import classNames from "./classNames";
@@ -187,6 +188,7 @@ const icons = {
     'scroll-text': ScrollText,
     'a-large-small': ALargeSmall,
     'cuboid': Cuboid,
+    'square-pi': SquarePi
   };
 
 

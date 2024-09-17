@@ -35,7 +35,7 @@ const PageLayout = (props: Props) => {
             className={'flex-1'}
         >
             <KeyboardAvoidingView
-                className={classNames('flex-1 bg-slate-900', className)}
+                className={classNames('flex-1 bg-slate-800', className)}
                 // @ts-ignore
                 style={[{
                     paddingTop: insets.top + padding,

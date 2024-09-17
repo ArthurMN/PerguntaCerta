@@ -1,7 +1,7 @@
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import Ranking from '../../screens/Ranking';
 import Home from '../../screens/Home';
-import { gray, orange, slate, white } from 'tailwindcss/colors';
+import { amber, gray, orange, slate, white } from 'tailwindcss/colors';
 import Texto, { getTamanhoFontBase } from '../../components/Texto';
 import classNames from '../../utils/classNames';
 import Perfil from '../../screens/Perfil';
@@ -36,7 +36,7 @@ const BottomTabRoutes: Array<bottomTabRoute> = [
         tabBarLabel: 'Perfil',
         tabBarIcon: 'user',
     },
-    
+
 ]
 
 
@@ -44,7 +44,7 @@ const BottomTabRoutes: Array<bottomTabRoute> = [
 const MainBottomTabs = () => {
     return (
         <Tab.Navigator
-            initialRouteName='home'
+            initialRouteName='disciplinas-stack'
         >
             {BottomTabRoutes.map(route => (
                 <Tab.Screen
@@ -52,19 +52,20 @@ const MainBottomTabs = () => {
                     options={{
                         headerShown: !!route.showHeader,
                         headerTitle: route.title,
-                        tabBarLabel: ({focused}) => (
-                            <Texto.Pequeno classNameTexto={classNames(focused ? 'text-orange-500' : 'text-gray-400')}>
+                        tabBarLabel: ({ focused }) => (
+                            <Texto.Pequeno classNameTexto={classNames(focused ? 'text-amber-600' : 'text-gray-400')}>
                                 {route.tabBarLabel}
                             </Texto.Pequeno>
                         ),
-                        tabBarIcon: ({focused}) => (
-                            <LucideIcons name={route.tabBarIcon} color={focused ? orange[500] : gray[400]} size={24} />
+                        tabBarIcon: ({ focused }) => (
+                            <LucideIcons name={route.tabBarIcon} color={focused ? amber[600] : gray[400]} size={28} />
                         ),
+                        tabBarStyle: {position: 'absolute', height: '8%', paddingBottom: 8 },
                         headerStyle: { backgroundColor: slate[700] },
                         headerTitleAlign: 'left',
                         headerTintColor: 'white',
                         headerTitleStyle: { color: white, fontSize: getTamanhoFontBase() + 4 },
-                        
+
                     }}
                     name={route.name}
                     component={route.component}

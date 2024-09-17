@@ -30,6 +30,7 @@ const SelecaoNivel = () => {
   const route = useRoute()
   // @ts-ignore
   const params: assunto = route.params
+  const { niveis, assunto } = params
 
   return (
     <PageLayout>
@@ -43,7 +44,7 @@ const SelecaoNivel = () => {
                   {group.map((item, subIndex) => (
                     <Pressable
                       disabled={!(index === 0 && subIndex === 0)}
-                      onPress={() => { navigation.navigate('perguntas', params.niveis[index].fases[subIndex]) }}
+                      onPress={() => { navigation.navigate('perguntas', { fase: niveis[index].fases[subIndex], assunto: assunto }) }}
                       key={subIndex}
                       className={
                         classNames('flex-1 aspect-square items-center justify-center rounded-full p-4',
@@ -70,16 +71,13 @@ const SelecaoNivel = () => {
                     <Pressable
                       key={subIndex}
                       disabled={!(index === 0 && subIndex === 0)}
-                      onPress={() => { navigation.navigate('perguntas')}}
+                      onPress={() => { navigation.navigate('perguntas') }}
                       className={
                         classNames('flex-1 aspect-square items-center justify-center rounded-full p-4',
-                          ((index === 0 && subIndex === 0)) ? 'bg-blue-600' : (item !== '') && 'bg-gray-600')
+                          (item !== '') && 'bg-gray-600')
                       }
                     >
-                      {(index === 0 && subIndex === 0) ?
-                        <Texto.Medio classNameTexto='text-white'>{item}</Texto.Medio> :
-                        <LucideIcons name='lock-key-hole' size={24} color={gray[200]} />
-                      }
+                      <LucideIcons name='lock-key-hole' size={24} color={gray[200]} />
                     </Pressable>
                   ))}
                 </View>
