@@ -20,8 +20,6 @@ const Disciplinas = () => {
     const data = require('../../database/db.json')
     setDados(data);
   }, [])
-  
-
 
 
   return (
@@ -49,7 +47,7 @@ const Disciplinas = () => {
           </View>
         </Pressable>
 
-        <Pressable onPress={() => navigation.navigate('selecao-assunto', dados![0])} className='justify-center'>
+        <Pressable onPress={() => navigation.navigate('selecao-assunto', { dados: dados![0], titulo: dados![0].categoria })} className='justify-center'>
           <View className='bg-blue-600 rounded-full p-8 self-start z-10' style={{ elevation: 5 }}>
             <LucideIcons name='percent' size={28} color={white} />
           </View>

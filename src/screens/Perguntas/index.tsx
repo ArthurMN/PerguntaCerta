@@ -17,7 +17,7 @@ import NavigateInterface from '../../interfaces/navigation';
 
 type params = {
   fase: fase
-  assunto: string
+  titulo: string
 }
 
 const Perguntas = () => {
@@ -28,29 +28,13 @@ const Perguntas = () => {
   const [perguntaAtual, setPerguntaAtual] = useState<number>(0);
   const [respostaSelecionada, setRespostaSelecionada] = useState<resposta | null>(null);
   const [mostrarResultado, setMostrarResultado] = useState<boolean>(false);
-  const { fase, assunto } = params
+  const { fase, titulo } = params
   const { perguntas } = fase
   const [modalOpen, setModalOpen] = useState<boolean>(false)
 
-
-  useEffect(() => {
-    navigation.getParent()?.setOptions({ tabBarStyle: { display: 'none' } });
-  }, []);
-
-  useFocusEffect(() => {
-    const backAction = () => {
-      navigation.getParent()?.setOptions({ tabBarStyle: { display: 'flex' } });
-      navigation.goBack();
-      return true
-    };
-
-    const backHandler = BackHandler.addEventListener(
-      'hardwareBackPress',
-      backAction
-    );
-
-    return () => backHandler.remove();
-  });
+  // useEffect(() => {
+  //   navigation.setOptions({ title: assunto })
+  // }, [navigation])
 
   const handleConfirmarResposta = () => {
     if (respostaSelecionada !== null) {
@@ -75,15 +59,13 @@ const Perguntas = () => {
   const respostaCorreta = perguntas[perguntaAtual].respostas.find(r => r.correta);
 
   return (
-    <PageLayout padding={0}>
-      <View className='py-8 flex-row items-center bg-slate-700 px-3' style={{ elevation: 5, gap: 12 }}>
-        <LucideIcons name='square-pi' size={32} color={blue[600]} />
-        <Texto.ExtraGrande classNameTexto='text-gray-100 text-left'>{assunto}</Texto.ExtraGrande>
-      </View>
+    <PageLayout padding={0} temHeader>
       {!mostrarResultado ? (
         <View className='flex-1 px-6'>
-          <View className='flex-1 justify-end pb-16' style={{ gap: 20 }}>
+          <View style={{ gap: 20 }}>
             <Texto.ExtraGrande classNameTexto='text-blue-600 text-left flex-shrink'>{perguntas[perguntaAtual].id}º Questão</Texto.ExtraGrande>
+          </View>
+          <View className='flex-1 justify-center'>
             <Texto.Grande classNameTexto='text-white text-center flex-shrink'>{perguntas[perguntaAtual].pergunta}</Texto.Grande>
           </View>
           <View className='justify-end py-12'>
@@ -130,8 +112,10 @@ const Perguntas = () => {
         </View>
       ) : (
         <View className='flex-1 px-6'>
-          <View className='flex-1 justify-end pb-16' style={{ gap: 20 }}>
+          <View>
             <Texto.ExtraGrande classNameTexto='text-blue-600 text-left flex-shrink'>{perguntas[perguntaAtual].id}º Questão</Texto.ExtraGrande>
+          </View>
+          <View className='flex-1 justify-center'>
             <Texto.Grande classNameTexto='text-white text-center flex-shrink'>
               {respostaSelecionada?.id === respostaCorreta?.id ? 'Parabéns, você acertou!' : 'Que pena, você errou!'}
             </Texto.Grande>

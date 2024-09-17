@@ -38,7 +38,7 @@ const PageLayout = (props: Props) => {
                 className={classNames('flex-1 bg-slate-800', className)}
                 // @ts-ignore
                 style={[{
-                    paddingTop: insets.top + padding,
+                    paddingTop: insets.top + padding + (temHeader ? 100 : 0),
                     paddingBottom: insets.bottom + padding,
                     paddingLeft: insets.left + padding,
                     paddingRight: insets.right + padding,

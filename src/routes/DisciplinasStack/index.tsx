@@ -2,12 +2,15 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import React from 'react';
 import { stackRoute } from '../../types/stackRoute.d';
 import EmObras from '../../screens/EmObras';
-import { slate, white } from 'tailwindcss/colors';
-import { getTamanhoFontBase } from '../../components/Texto';
+import { blue, slate, white } from 'tailwindcss/colors';
+import { getHeaderTitle } from '@react-navigation/elements';
 import Disciplinas from '../../screens/Disciplinas';
 import SelecaoAssunto from '../../screens/SelecaoAssunto';
 import SelecaoNivel from '../../screens/SelecaoNivel';
 import Perguntas from '../../screens/Perguntas';
+import Header from '../../components/Header';
+import { BotaoVoltar } from '../../components/BotoesHeader';
+import LucideIcons from '../../utils/LucideIcons';
 
 const Stack = createNativeStackNavigator();
 
@@ -21,19 +24,27 @@ const StackRoutes: Array<stackRoute> = [
         component: SelecaoAssunto,
         showHeader: true,
         showBackButton: true,
-        statusBarColor: slate[700]
+        statusBarColor: slate[700],
+        headerLeft: () => <BotaoVoltar />
     },
     {
         name: 'selecao-nivel',
         component: SelecaoNivel,
         showHeader: true,
         showBackButton: true,
-        statusBarColor: slate[700]
+        statusBarColor: slate[700],
+        headerLeft: () => <BotaoVoltar />
     },
     {
         name: 'perguntas',
         component: Perguntas,
-        statusBarColor: slate[700]
+        showHeader: true,
+        statusBarColor: slate[700],
+        headerLeft: () => (
+            <Header.HeaderLeft onPress={() => {}}>
+                <LucideIcons name='square-pi' size={32} color={blue[600]} />
+            </Header.HeaderLeft>
+        )
     },
     {
         name: 'em-obras',
@@ -43,6 +54,9 @@ const StackRoutes: Array<stackRoute> = [
     },
 ]
 
+
+
+
 const DisciplinasStack = () => {
     return (
         <Stack.Navigator
@@ -51,24 +65,33 @@ const DisciplinasStack = () => {
                 headerShadowVisible: false,
             }}
         >
-            {StackRoutes.map(route => (
+            {StackRoutes.map(routes => (
                 <Stack.Screen
-                    key={route.name}
+                    key={routes.name}
                     options={{
-                        statusBarColor: route.statusBarColor ? route.statusBarColor : slate[800],
-                        statusBarTranslucent: !!route.statusBarTranslucent,
-                        statusBarStyle: route?.statusBarStyle,
-                        headerBackVisible: !!route.showBackButton,
-                        headerShown: !!route.showHeader,
-                        headerTitle: route.title || '',
-                        statusBarHidden: !!route?.statusBarHidden,
-                        headerStyle: { backgroundColor: slate[700] },
-                        headerTitleAlign: 'left',
-                        headerTintColor: 'white',
-                        headerTitleStyle: { color: white, fontSize: getTamanhoFontBase() + 4 },
+                        statusBarColor: routes.statusBarColor ? routes.statusBarColor : slate[800],
+                        statusBarTranslucent: !!routes.statusBarTranslucent,
+                        statusBarStyle: routes?.statusBarStyle,
+                        headerBackVisible: !!routes.showBackButton,
+                        headerShown: !!routes.showHeader,
+                        // headerTitle: route.title || '',
+                        statusBarHidden: !!routes?.statusBarHidden,
+                        header: ({ route, options }) => (
+                            <Header >
+                                {routes.headerLeft
+                                    ? routes.headerLeft({ canGoBack: true })
+                                    : null}
+                                <Header.HeaderTitle >
+                                    {getHeaderTitle(options, route.params?.titulo || 'teste')}
+                                </Header.HeaderTitle>
+                                {routes.headerRight
+                                    ? routes.headerRight({ canGoBack: true })
+                                    : null}
+                            </Header>
+                        ),
                     }}
-                    name={route.name}
-                    component={route.component}
+                    name={routes.name}
+                    component={routes.component}
                 />
             ))}
         </Stack.Navigator>

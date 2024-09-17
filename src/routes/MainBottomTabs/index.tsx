@@ -8,13 +8,14 @@ import Perfil from '../../screens/Perfil';
 import LucideIcons from '../../utils/LucideIcons';
 import { bottomTabRoute } from '../../types/bottomTabRoute.d';
 import DisciplinasStack from '../DisciplinasStack';
+import EmObras from '../../screens/EmObras';
 
 const Tab = createBottomTabNavigator();
 
 const BottomTabRoutes: Array<bottomTabRoute> = [
     {
         name: 'home',
-        component: Home,
+        component: EmObras,
         tabBarLabel: 'Início',
         tabBarIcon: 'house',
     },
@@ -26,13 +27,13 @@ const BottomTabRoutes: Array<bottomTabRoute> = [
     },
     {
         name: 'ranking',
-        component: Ranking,
+        component: EmObras,
         tabBarLabel: 'Ranking',
         tabBarIcon: 'trophy',
     },
     {
         name: 'perfil',
-        component: Perfil,
+        component: EmObras,
         tabBarLabel: 'Perfil',
         tabBarIcon: 'user',
     },
@@ -60,7 +61,7 @@ const MainBottomTabs = () => {
                         tabBarIcon: ({ focused }) => (
                             <LucideIcons name={route.tabBarIcon} color={focused ? amber[600] : gray[400]} size={28} />
                         ),
-                        tabBarStyle: {position: 'absolute', height: '8%', paddingBottom: 8 },
+                        tabBarStyle: { position: 'absolute', height: '8%', paddingBottom: 8 },
                         headerStyle: { backgroundColor: slate[700] },
                         headerTitleAlign: 'left',
                         headerTintColor: 'white',
